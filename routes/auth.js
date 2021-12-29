@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     if (!validPassword)
       return res.status(400).send("Invalid user or password!!");
     const token = user.generateAuthTokens();
-    res.send(token);
+    res.send({ accessToken: token });
   } else {
     res.status(400).send(error.message);
   }
