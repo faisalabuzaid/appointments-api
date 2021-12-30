@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const appointmentSchema = new Schema({
   date: { required: true, type: Date },
   seller: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  buyer: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  buyer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   status: {
     type: String,
     enum: ["pending", "accepted", "rejected"],
