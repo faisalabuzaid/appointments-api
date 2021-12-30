@@ -20,7 +20,7 @@ function validateAppointment(appointment) {
   const schema = Joi.object({
     date: Joi.date().required(),
     seller: Joi.string().min(5).max(50).required(),
-    buyer: Joi.string().min(5).max(50).required(),
+    buyer: Joi.string().min(5).max(50),
     status: Joi.string(),
   });
 

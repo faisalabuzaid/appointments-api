@@ -15,14 +15,19 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     console.log(req.body);
     // await User.findOneAndUpdate({ name: req.body.username}, {
     //   booked: req.body.dates,
     //   bookable: false
     // })
-    const newAppointment = await Appointment.create(req.body);
+    const appoiintment = {
+      date: req.body.date,
+      seller: req.body.seller,
+      buyer: req.user._id,
+    };
+    const newAppointment = await Appointment.create(appoiintment);
     await User.findOneAndUpdate(
       { _id: newAppointment.seller },
       { $push: { appointments: newAppointment } }
