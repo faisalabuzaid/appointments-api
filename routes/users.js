@@ -9,9 +9,9 @@ const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const saltRounds = 10;
 
-router.get("/me", auth, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const user = await User.findById(req.user._id).select("-password");
+    const user = await User.findById(req.params.id).select("-password");
     res.status(200).send(user);
   } catch (err) {
     res.status(500).send(err.message);
